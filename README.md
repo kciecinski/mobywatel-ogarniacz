@@ -4,7 +4,7 @@
 
 [Otwórz demo](https://mobywatel-ogarniacz.pages.dev/) · [Obejrzyj film (48 s)](demo/ogarniacz-demo.mp4)
 
-[![Film prezentacyjny — USC i ZUS załatwiają jedną sprawę](demo/poster.jpg)](demo/ogarniacz-demo.mp4)
+https://github.com/user-attachments/assets/e744ec76-0a3e-4563-95fe-bb541107f64a
 
 Klikalny, nieoficjalny prototyp przygotowany w kontekście mObywatel Challenge. Obywatel zaczyna od celu, udostępnia potrzebne dane i zatwierdza działania. Ogarniacz dobiera agentów instytucji, koordynuje ich pracę i doprowadza sprawę do rezultatu.
 
