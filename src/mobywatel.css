@@ -1,0 +1,117 @@
+/* A light visual alignment with mObywatel's published screens.
+   These are prototype tokens, not an official design-system specification.
+   Institution avatar hues and their message backgrounds stay in ai-native.css. */
+:root {
+  color:#171a1f; background:#f6f7fb;
+  --ink:#171a1f; --muted:#626976; --quiet:#737b88;
+  --ground:#f6f7fb; --surface:#fff; --surface-raised:#eef1f7;
+  --line:#dfe3eb; --accent:#1d5bff; --accent-dark:#edf2ff; --red:#d52546;
+  --action-hover:#1747cb;
+}
+h1 { font-weight:600; letter-spacing:-.035em; }
+.cases-overview-heading h1,.case-card h2 { font-weight:600; letter-spacing:-.025em; }
+.chat-topbar { background:#f6f7fbf2; }
+.topbar { background:#f0f2f7; border-color:var(--line); }
+.product-brand { display:flex; flex-direction:column; gap:2px; line-height:1.15; }
+.chat-topbar > .product-brand { font-size:15px; letter-spacing:-.025em; }
+.product-brand strong { font-weight:650; }
+.product-brand strong::after { content:''; display:inline-block; width:5px; height:5px; margin-left:5px; border-radius:50%; background:var(--red); vertical-align:middle; }
+.product-brand small { font-size:11px; letter-spacing:0; font-weight:400; color:var(--muted); }
+.brand .product-brand strong { font-size:19px; }
+.brand .product-brand small { font-size:12px; }
+.brand-symbol { background:var(--accent); }
+.sidebar-toggle,.quick-new-chat,.app-nav button,.more-topics,.cases-heading h2,.case-list-item button,.showcase-label,.golden-caption,.special-demos,.special-demos button span { color:var(--muted); }
+.sidebar-toggle:hover,.quick-new-chat:hover { background:#e9edf5; }
+.app-nav button[aria-current="page"],.case-list-item button[aria-current="true"] { background:#e5edff; color:#1747b7; }
+.new-chat,.topic-composer,.topic-suggestions button,.flow-composer,.case-cards .case-card { border-color:var(--line); }
+.topic-suggestions button { color:#303947; background:#ffffff70; }
+.topic-suggestions button:hover { background:#fff; border-color:#b1c4ef; }
+.topic-suggestions button > span:last-child { color:#6c7b9c; }
+.topic-composer:focus-within,.flow-composer:focus-within { border-color:#82a3f5; box-shadow:0 0 0 3px #1d5bff12,0 8px 30px #253c7107; }
+:focus-visible,.message-open:focus-visible { outline-color:var(--accent); }
+.composer-footer button,.composer-send,.message-actions .action-primary,.case-complete-actions .case-new-action,.case-card-actions button { background:var(--accent); border-color:var(--accent); color:#fff; }
+.composer-footer button:not(:disabled):hover,.composer-send:not(:disabled):hover,.message-actions .action-primary:hover,.case-complete-actions .case-new-action:hover,.case-card-actions button:hover { background:var(--action-hover); border-color:var(--action-hover); }
+.composer-footer button:disabled,.composer-send:disabled { background:#e9edf5; color:#8590a3; }
+.message-actions .action-primary { box-shadow:0 3px 10px #1d5bff12; }
+.message-actions .action-secondary { color:var(--muted); }
+.case-new-action { background:#edf2ff; border-color:#c7d5f7; color:#214caa; }
+.case-new-action:hover { background:#e4ecff; }
+.flow-composer-dock { background:linear-gradient(to bottom,#f6f7fb00,#f6f7fb 20px); }
+.composer-choices button { background:#f6f8fc; border-color:#e0e5ef; color:#5c6675; }
+.composer-choices button[aria-pressed="true"] { background:#edf2ff; border-color:#abc0f5; color:#214caa; }
+.answer-message { background:#eaf0ff; }
+.flow-messages .answer-message > .chat-sender { color:#586a8b; }
+.coordinator-message > .chat-sender { color:#424b59; }
+.chat-disclosure,.case-card-documents,.special-demos button { border-color:var(--line); }
+.chat-disclosure summary,.case-card-summary,.case-card-documents h3,.case-number { color:var(--muted); }
+.case-status { background:#eef1f6; color:#5c6675; }
+.case-status-done { background:#eaf4e5; color:#3e6334; }
+.case-status-waiting,.case-status-paused { background:#f6f1e4; color:#7b652c; }
+.case-status-processing { background:#eaf0ff; color:#3056a2; }
+.artifact-download { border-color:#dde3ed; color:#35445d; }
+.artifact-download:hover { border-color:#9bb5ed; }
+.artifact-download small { color:var(--muted); }
+.chat-event,.chat-event-joined,.chat-event-transfer small,.chat-event-document { color:#6d7582; }
+.chat-event > span { background:#edf0f6; color:#6b7891; }
+.chat-event-transfer .transfer-copy { background:none; color:inherit; }
+@media(max-width:700px) {
+  .chat-topbar { gap:8px; }
+  .chat-topbar > .product-brand { font-size:14px; flex-shrink:0; }
+  .quick-new-chat { max-width:180px; padding:6px 8px; font-size:12px; line-height:1.4; }
+}
+@media(max-width:360px) { .quick-new-chat { max-width:140px; font-size:11px; }.chat-topbar{padding-inline:10px;} }
+
+/* Readonly institutional thread, separate from the citizen's main case. */
+.flow-dialog { position:fixed; }
+.flow-dialog .dialog-x { position:absolute; z-index:3; top:12px; right:12px; margin:0; padding:10px; width:44px; height:44px; display:grid; place-items:center; border-radius:50%; color:#626d7e; background:#eef1f7; }
+.dialog-x svg { width:21px; height:21px; }
+.flow-dialog .dialog-x:hover { background:#e4e9f2; color:#171a1f; }
+.attachment-preview-dialog { padding-top:66px; }
+.agent-thread-dialog { width:min(680px,calc(100% - 24px)); height:min(780px,88dvh); max-height:88dvh; padding:0; overflow:hidden; }
+.agent-thread-dialog[open] { display:flex; flex-direction:column; }
+.agent-thread-header { display:flex; gap:14px; align-items:center; padding:22px 68px 20px 24px; border-bottom:1px solid var(--line); background:#fff; }
+.agent-thread-header .institution-portrait { width:42px; height:44px; flex-basis:42px; }
+.agent-thread-header h2 { margin:0 0 3px; font-size:18px; line-height:1.4; font-weight:600; }
+.agent-thread-header span[role="status"] { font-size:12px; color:var(--muted); }
+.agent-thread-scroll { overflow-y:auto; overscroll-behavior:contain; flex:1; min-height:0; padding:22px 24px; scrollbar-gutter:stable; }
+.agent-thread-scroll p { margin:5px 0 0; white-space:pre-line; font-size:14px; line-height:1.65; }
+.agent-thread-scroll strong { font-size:12px; font-weight:600; }
+.agent-thread-delegation,.agent-thread-message,.agent-thread-user { padding:14px 16px; border-radius:14px; margin-bottom:16px; }
+.agent-thread-delegation { background:#fff; border:1px solid #e1e6ef; }
+.agent-thread-message { background:#edf2fb; color:#28384f; }
+.agent-thread-user { margin-left:30px; background:#e7edfb; }
+.agent-thread-tool { margin:14px 0 14px 12px; padding:12px 14px; border-left:2px solid #cbd5e6; background:#ffffff90; border-radius:0 10px 10px 0; }
+.agent-thread-tool.is-running { border-color:var(--accent); background:#edf2ff; }
+.agent-thread-tool-title { display:flex; align-items:center; gap:8px; font-size:13px; color:#3e5271; }
+.agent-thread-work { flex:none; }
+.is-running .agent-thread-work { display:inline-block; animation:tool-spin 1.6s linear infinite; }
+.agent-thread-tool code { display:block; font-size:11px; color:#687791; margin:6px 0; overflow-wrap:anywhere; }
+.agent-thread-scroll summary { font-size:12px; color:#61728d; cursor:pointer; padding:8px 0; min-height:32px; }
+.agent-thread-scroll pre { white-space:pre-wrap; overflow-wrap:anywhere; font-size:11px; line-height:1.6; padding:12px; border-radius:8px; background:#eef1f7; }
+.agent-thread-scroll dl { margin:8px 0; font-size:12px; }
+.agent-thread-scroll dl > div { padding:7px 0; border-bottom:1px solid #e2e7ef; }
+.agent-thread-scroll dt { color:#5b6c85; }
+.agent-thread-scroll dd { margin:3px 0 0; overflow-wrap:anywhere; }
+.agent-thread-scroll dd small { display:block; color:#6e7888; }
+.agent-thread-output { color:#69778d; font-size:11px; }
+.agent-thread-caption { margin:0; padding:10px 24px; border-top:1px solid var(--line); font-size:11px; color:#737d8e; background:#fff; }
+@media(max-width:400px) { .agent-thread-header{padding-left:16px}.agent-thread-scroll{padding:16px}.agent-thread-header h2{font-size:16px}.agent-thread-caption{padding:10px 16px} }
+@media(prefers-reduced-motion:reduce) { .is-running .agent-thread-work{animation:none} }
+
+.agent-thread-dialog:has(.portrait-tax) { --thread-tone:var(--agent-tax); }
+.agent-thread-dialog:has(.portrait-civil) { --thread-tone:var(--agent-civil); }
+.agent-thread-dialog:has(.portrait-zus) { --thread-tone:var(--agent-zus); }
+.agent-thread-dialog:has(.portrait-register) { --thread-tone:var(--agent-register); }
+.agent-thread-dialog:has(.portrait-municipality) { --thread-tone:var(--agent-municipality); }
+.agent-thread-dialog:has(.portrait-county) { --thread-tone:var(--agent-county); }
+.agent-thread-dialog:has(.portrait-court) { --thread-tone:var(--agent-court); }
+.agent-thread-dialog:has(.portrait-notary) { --thread-tone:var(--agent-notary); }
+.agent-thread-dialog:has(.portrait-inspector) { --thread-tone:var(--agent-inspector); }
+.agent-thread-dialog:has(.portrait-wzon) { --thread-tone:var(--agent-wzon); }
+.agent-thread-dialog:has(.portrait-ministry) { --thread-tone:var(--agent-ministry); }
+.agent-thread-message { background:color-mix(in srgb,var(--thread-tone,#aec0d8) 27%,#fff); }
+
+.agent-avatar-open { flex:0 0 40px; display:flex; align-items:flex-start; justify-content:center; width:40px; height:44px; padding:4px 0; border:0; background:transparent; border-radius:12px; cursor:pointer; }
+.agent-avatar-open .institution-portrait { width:34px; height:36px; flex:none; }
+.agent-avatar-open:hover { background:#e9eef7; }
+@media(max-width:700px) { .agent-avatar-open{flex-basis:34px;width:34px}.agent-avatar-open .institution-portrait{width:30px;height:32px} }
