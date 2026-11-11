@@ -4,7 +4,7 @@ const preview = process.env.RELEASE_AUDIT_URL ?? 'http://127.0.0.1:4184/'
 test.skip(!process.env.RELEASE_AUDIT_URL, 'Set RELEASE_AUDIT_URL to explicitly audit a deployed build.')
 
 for (const [title, width] of [['Zamknięcie firmy', 390], ['Narodziny dziecka', 320], ['Budowa domu', 1440]] as const) {
-  test(`production anonymous full showcase: ${title} / ${width}px`, async ({ page }) => {
+  test(`production anonymous full showcase: ${title} / ${width}px`, async ({ page }, testInfo) => {
     test.setTimeout(120000)
     const errors: string[] = []
     page.on('pageerror', error => errors.push(error.message))
@@ -48,9 +48,9 @@ for (const [title, width] of [['Zamknięcie firmy', 390], ['Narodziny dziecka', 
     const pdf = await readFile(downloadedPath!)
     expect(pdf.subarray(0, 5).toString()).toBe('%PDF-')
     expect(pdf.length).toBeGreaterThan(1000)
-    await download.saveAs(`/private/tmp/ogarniacz-release-${width}.pdf`)
+    await download.saveAs(testInfo.outputPath(`release-${width}.pdf`))
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
-    await page.screenshot({ path: `shots/release-${width}-final.png` })
+    await page.screenshot({ path: testInfo.outputPath(`release-${width}-final.png`) })
     await page.goto(`${preview}#przeglad`)
     await expect(page.locator('.case-status')).toHaveText('Załatwiona')
     await expect(page.getByRole('button', { name: 'Przejdź do sprawy' })).toBeVisible()
@@ -60,6 +60,6 @@ for (const [title, width] of [['Zamknięcie firmy', 390], ['Narodziny dziecka', 
     await expect(page.getByRole('heading', { name: 'Jak działa współpraca agentów?' })).toBeVisible()
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
     expect(errors).toEqual([])
-    await writeFile(`/private/tmp/ogarniacz-showcase-${width}.json`, JSON.stringify({ title, width, elapsedMs, actions, errors }, null, 2))
+    await writeFile(testInfo.outputPath(`showcase-${width}.json`), JSON.stringify({ title, width, elapsedMs, actions, errors }, null, 2))
   })
 }

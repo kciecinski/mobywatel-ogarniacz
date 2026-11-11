@@ -32,7 +32,7 @@ async function seed(page: import('@playwright/test').Page, current: Case) {
   await page.goto('/')
 }
 
-test('completed VAT-Z offers a real example PDF in the receipt and case history after reload', async ({ page }) => {
+test('completed VAT-Z offers a real example PDF in the receipt and case history after reload', async ({ page }, testInfo) => {
   await seed(page, preparedCase('closing-business', true))
   const taxMessage = page.getByRole('article', { name: 'Wiadomość: Agent urzędu skarbowego' }).filter({ hasText: 'VAT-Z przyjęte' })
   await expect(taxMessage.getByRole('button', { name: /UPO zgłoszenia VAT-Z/ })).toBeVisible()
@@ -41,7 +41,7 @@ test('completed VAT-Z offers a real example PDF in the receipt and case history 
   const download = await downloadPromise
   expect(download.suggestedFilename()).toContain('upo-zgloszenia-vat-z')
   const path = await download.path()
-  await download.saveAs('/private/tmp/ogarniacz-audit-pdfs/upo-vat-z.pdf')
+  await download.saveAs(testInfo.outputPath('upo-vat-z.pdf'))
   expect((await readFile(path)).subarray(0, 5).toString()).toBe('%PDF-')
   await page.reload()
   await page.getByText('Przebieg sprawy', { exact: true }).click()
@@ -74,7 +74,7 @@ test('every completed agent step has documents and failed attempts have none', (
 })
 
 for (const [scenarioId, title, filename] of [['childbirth', 'Akt urodzenia', 'akt-urodzenia.pdf'], ['unavailable-agent', 'Potwierdzenie rozliczenia składek', 'skladki-po-ponowieniu.pdf']]) {
-  test(`download final result after completion: ${title}`, async ({ page }) => {
+  test(`download final result after completion: ${title}`, async ({ page }, testInfo) => {
     const current = preparedCase(scenarioId, true)
     const flow = projectFlow(current)
     const lastReceipt = flow.messages.filter(message => message.kind === 'receipt').at(-1)!
@@ -89,6 +89,6 @@ for (const [scenarioId, title, filename] of [['childbirth', 'Akt urodzenia', 'ak
     const downloadPromise = page.waitForEvent('download')
     await page.getByRole('button', { name: new RegExp(title) }).first().click()
     const download = await downloadPromise
-    await download.saveAs(`/private/tmp/ogarniacz-audit-pdfs/${filename}`)
+    await download.saveAs(testInfo.outputPath(filename))
   })
 }

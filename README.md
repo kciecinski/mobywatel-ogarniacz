@@ -2,7 +2,9 @@
 
 **Jedna sprawa. Współpraca wielu instytucji.**
 
-[Otwórz demo](https://mobywatel-ogarniacz.pages.dev/)
+[Otwórz demo](https://mobywatel-ogarniacz.pages.dev/) · [Obejrzyj film (48 s)](demo/ogarniacz-demo.mp4)
+
+[![Film prezentacyjny — USC i ZUS załatwiają jedną sprawę](demo/poster.jpg)](demo/ogarniacz-demo.mp4)
 
 Klikalny, nieoficjalny prototyp przygotowany w kontekście mObywatel Challenge. Obywatel zaczyna od celu, udostępnia potrzebne dane i zatwierdza działania. Ogarniacz dobiera agentów instytucji, koordynuje ich pracę i doprowadza sprawę do rezultatu.
 
@@ -35,7 +37,7 @@ npx playwright install chromium
 npm test
 ```
 
-Testy przeglądarkowe domyślnie otwierają Chromium. W Linuxie bez ekranu można użyć `xvfb-run npm test`. Testy artefaktów zapisują przykładowe PDF-y do `/private/tmp/ogarniacz-audit-pdfs/`; na Linuxie utwórz ten katalog albo zmień ścieżkę w teście. Dodatkowa weryfikacja wdrożenia:
+Testy przeglądarkowe domyślnie otwierają Chromium. W Linuxie bez ekranu można użyć `xvfb-run npm test`. Testy zapisują PDF-y, zrzuty i raporty w katalogu wynikowym Playwright (`test-results/`), bez zależności od ścieżek konkretnego systemu. Dodatkowa weryfikacja wdrożenia:
 
 ```sh
 RELEASE_AUDIT_URL=https://mobywatel-ogarniacz.pages.dev/ npm test -- tests/release-audit.spec.ts --workers=3
@@ -50,6 +52,10 @@ Aplikacja nie wymaga backendu ani kluczy API. Dane są zapisywane w localStorage
 ## Publikacja
 
 `npm run build` tworzy statyczny katalog `dist/`. Aktualne demo działa w Cloudflare Pages pod adresem https://mobywatel-ogarniacz.pages.dev/. Wdrożenie korzysta z Direct Upload; push do tego repozytorium sam nie aktualizuje strony. Widoki korzystają z fragmentów URL, np. `/#przeglad` i `/#agenci`.
+
+## Film demonstracyjny
+
+[Gotowy MP4](demo/ogarniacz-demo.mp4): 48 s, 1920×1080, 30 fps, około 6,4 MB. Projekt HyperFrames do edycji jest w [video/](video/). Film pokazuje rzeczywiste nagranie prototypu z montażem i przyspieszeniami, bez lektora. Atrybucję muzyki zawiera plansza końcowa i [CREDITS.md](video/assets/CREDITS.md); zachowaj ją przy publikacji.
 
 ## Zależności i licencje
 

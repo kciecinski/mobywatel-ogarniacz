@@ -8,3 +8,8 @@ shots/
 .env
 .env.*
 .DS_Store
+
+video/.hyperframes/
+video/.media/
+video/assets/recordings/
+video/renders/
